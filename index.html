@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediSearch - Medicine Index</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+                <span class="logo-text" data-en="MediSearch" data-ar="ميدي سيرش">MediSearch</span>
+            </div>
+            <div class="header-actions">
+                <button id="langToggle" class="btn btn-outline" aria-label="Toggle Language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                    </svg>
+                    <span data-en="العربية" data-ar="English">العربية</span>
+                </button>
+                <button id="themeToggle" class="btn btn-icon" aria-label="Toggle Theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title" data-en="Find Your Medicine" data-ar="ابحث عن دوائك">Find Your Medicine</h1>
+            <p class="hero-subtitle" data-en="Search through thousands of medicines with detailed information about prices, side effects, and alternatives." data-ar="ابحث في آلاف الأدوية مع معلومات مفصلة عن الأسعار والآثار الجانبية والبدائل.">Search through thousands of medicines with detailed information about prices, side effects, and alternatives.</p>
+            
+            <!-- Search Box -->
+            <div class="search-container">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Search for medicines..."
+                        data-placeholder-en="Search for medicines..."
+                        data-placeholder-ar="ابحث عن الأدوية..."
+                    >
+                    <button id="voiceSearch" class="btn btn-voice" aria-label="Voice Search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </button>
+                    <button id="searchBtn" class="btn btn-primary">
+                        <span data-en="Search" data-ar="بحث">Search</span>
+                    </button>
+                </div>
+                <div id="voiceStatus" class="voice-status hidden">
+                    <div class="voice-indicator"></div>
+                    <span data-en="Listening..." data-ar="جاري الاستماع...">Listening...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label" data-en="Medicines" data-ar="دواء">Medicines</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label" data-en="Categories" data-ar="فئة">Categories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label" data-en="Manufacturers" data-ar="شركة مصنعة">Manufacturers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label" data-en="Support" data-ar="دعم">Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="resultsSection" class="results-section hidden">
+        <div class="container">
+            <div class="results-header">
+                <h2 class="results-title">
+                    <span data-en="Search Results for" data-ar="نتائج البحث عن">Search Results for</span>
+                    "<span id="searchQuery"></span>"
+                </h2>
+                <span id="resultsCount" class="results-count"></span>
+            </div>
+            <div id="resultsGrid" class="results-grid"></div>
+            <div id="noResults" class="no-results hidden">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="64" height="64">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                    <path d="M8 8l6 6M14 8l-6 6"/>
+                </svg>
+                <h3 data-en="No medicines found" data-ar="لم يتم العثور على أدوية">No medicines found</h3>
+                <p data-en="Try searching with different keywords" data-ar="حاول البحث بكلمات مختلفة">Try searching with different keywords</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title" data-en="Browse by Category" data-ar="تصفح حسب الفئة">Browse by Category</h2>
+            <div class="categories-grid">
+                <button class="category-card" data-category="painkillers">
+                    <div class="category-icon">💊</div>
+                    <span data-en="Painkillers" data-ar="مسكنات">Painkillers</span>
+                </button>
+                <button class="category-card" data-category="antibiotics">
+                    <div class="category-icon">🦠</div>
+                    <span data-en="Antibiotics" data-ar="مضادات حيوية">Antibiotics</span>
+                </button>
+                <button class="category-card" data-category="vitamins">
+                    <div class="category-icon">🍊</div>
+                    <span data-en="Vitamins" data-ar="فيتامينات">Vitamins</span>
+                </button>
+                <button class="category-card" data-category="heart">
+                    <div class="category-icon">❤️</div>
+                    <span data-en="Heart & BP" data-ar="القلب والضغط">Heart & BP</span>
+                </button>
+                <button class="category-card" data-category="diabetes">
+                    <div class="category-icon">🩸</div>
+                    <span data-en="Diabetes" data-ar="السكري">Diabetes</span>
+                </button>
+                <button class="category-card" data-category="allergies">
+                    <div class="category-icon">🤧</div>
+                    <span data-en="Allergies" data-ar="الحساسية">Allergies</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Medicines -->
+    <section class="featured">
+        <div class="container">
+            <h2 class="section-title" data-en="Popular Medicines" data-ar="الأدوية الشائعة">Popular Medicines</h2>
+            <div id="featuredGrid" class="results-grid"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        <span class="logo-text" data-en="MediSearch" data-ar="ميدي سيرش">MediSearch</span>
+                    </div>
+                    <p class="footer-desc" data-en="Your trusted source for medicine information. Always consult a healthcare professional before taking any medication." data-ar="مصدرك الموثوق لمعلومات الأدوية. استشر دائمًا أخصائي الرعاية الصحية قبل تناول أي دواء.">Your trusted source for medicine information. Always consult a healthcare professional before taking any medication.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h4>
+                    <ul>
+                        <li><a href="#" data-en="About Us" data-ar="من نحن">About Us</a></li>
+                        <li><a href="#" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
+                        <li><a href="#" data-en="Privacy Policy" data-ar="سياسة الخصوصية">Privacy Policy</a></li>
+                        <li><a href="#" data-en="Terms of Service" data-ar="شروط الخدمة">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-en="Categories" data-ar="الفئات">Categories</h4>
+                    <ul>
+                        <li><a href="#" data-en="Painkillers" data-ar="مسكنات">Painkillers</a></li>
+                        <li><a href="#" data-en="Antibiotics" data-ar="مضادات حيوية">Antibiotics</a></li>
+                        <li><a href="#" data-en="Vitamins" data-ar="فيتامينات">Vitamins</a></li>
+                        <li><a href="#" data-en="First Aid" data-ar="إسعافات أولية">First Aid</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-en="© 2024 MediSearch. All rights reserved." data-ar="© 2024 ميدي سيرش. جميع الحقوق محفوظة.">© 2024 MediSearch. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Medicine Modal -->
+    <div id="medicineModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close Modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
